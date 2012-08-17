@@ -218,7 +218,7 @@ def execute_linode_request(requestParams):
 def linode_create_domain(domainName):
     requestParams = {
         "action" : "domain.create",
-        "domain" : "skslater-" + domainName,
+        "domain" : domainName,
         "soa_email" : HOSTMASTER_EMAIL,
         "type" : "master",
         "status" : INITIAL_ZONE_STATUS
