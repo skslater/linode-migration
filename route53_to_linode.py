@@ -277,6 +277,16 @@ def linode_create_record(domainId, zoneName, recordName, recordType, recordTTL, 
         values = recordValue.split()
         requestParams['priority'] = values[0]
         requestParams['target'] = values[1]
+    elif recordType == 'SRV':
+        values = recordValue.split()
+        requestParams['priority'] = values[0]
+        requestParams['weight'] = values[1]
+        requestParams['port'] = values[2]
+        requestParams['target'] = values[3]
+    elif recordType == 'TXT':
+        if recordValue.startswith('"') and recordValue.endswith('"'):
+            recordValue = recordValue[1:-1]
+        requestParams['target'] = recordValue
     else:
         requestParams['target'] = recordValue
     recordResponse = execute_linode_request(requestParams)
